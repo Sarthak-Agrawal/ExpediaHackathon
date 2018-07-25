@@ -12,8 +12,6 @@ public class Trip {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer tid;
     private Integer tuid;
-    private String firstName;
-    private String lastName;
     private String location;
     private Date date;
     private boolean trekking;
@@ -22,9 +20,30 @@ public class Trip {
     private boolean sports;
     private boolean sightseeing;
     private boolean nightlife;
-    private String language;
+    private Integer language;
     private boolean smoking;
     private Integer age;
+
+    //tid integer PRIMARY KEY , tuid integer , location varchar(100), time timestamp, trekking tinyint(1),religious tinyint(1), localinteraction tinyint(1), sightseeing tinyint(1) , nightlife tinyint(1),language_preffered tinyint(1), smoking_preffered tinyint(1), age_group tinyint(1))
+
+    @Override
+    public String toString() {
+        return "Trip{" +
+                "tid=" + tid +
+                ", tuid=" + tuid +
+                ", location='" + location + '\'' +
+                ", date=" + date +
+                ", trekking=" + trekking +
+                ", religious=" + religious +
+                ", localInteraction=" + localInteraction +
+                ", sports=" + sports +
+                ", sightseeing=" + sightseeing +
+                ", nightlife=" + nightlife +
+                ", language=" + language +
+                ", smoking=" + smoking +
+                ", age=" + age +
+                '}';
+    }
 
     public Integer getTid() {
         return tid;
@@ -40,22 +59,6 @@ public class Trip {
 
     public void setTuid(Integer tuid) {
         this.tuid = tuid;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getLocation() {
@@ -122,11 +125,11 @@ public class Trip {
         this.nightlife = nightlife;
     }
 
-    public String getLanguage() {
+    public Integer getLanguage() {
         return language;
     }
 
-    public void setLanguage(String language) {
+    public void setLanguage(Integer language) {
         this.language = language;
     }
 
@@ -144,26 +147,5 @@ public class Trip {
 
     public void setAge(Integer age) {
         this.age = age;
-    }
-
-    @Override
-    public String toString() {
-        return "Trip{" +
-                "tid=" + tid +
-                ", tuid=" + tuid +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", location='" + location + '\'' +
-                ", date=" + date +
-                ", trekking=" + trekking +
-                ", religious=" + religious +
-                ", localInteraction=" + localInteraction +
-                ", sports=" + sports +
-                ", sightseeing=" + sightseeing +
-                ", nightlife=" + nightlife +
-                ", language='" + language + '\'' +
-                ", smoking=" + smoking +
-                ", age=" + age +
-                '}';
     }
 }

@@ -1,4 +1,4 @@
-package com.expedia.www.hackathon.backpackersPool;
+package com.expedia.www.hackathon.backpackersPool.repositories;
 
 import com.expedia.www.hackathon.backpackersPool.models.Customer;
 import org.springframework.data.repository.CrudRepository;
