@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Integer tuid;
     private String name;
     private char gender;
     private String fbID;
@@ -18,17 +18,16 @@ public class Customer {
     private String phone;
 
     public Integer getId() {
-        return id;
+        return tuid;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer tuid) {
+        this.tuid = tuid;
     }
 
     public String getName() {
         return name;
     }
-
 
     public void setName(String name) {
         this.name = name;
