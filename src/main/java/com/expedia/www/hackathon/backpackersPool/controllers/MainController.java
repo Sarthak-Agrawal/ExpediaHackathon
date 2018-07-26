@@ -94,9 +94,7 @@ public class MainController {
         mv.setViewName("InterestsForm.jsp");
 
         Trip trip = tripRepository.findById(tid).orElse(new Trip());
-        System.out.println(trip.toString());
 
-        System.out.println("kajsd kasjdh ");
         Customer customer = customerRepository.findById(trip.getTuid()).orElse(new Customer());
         System.out.println(customer.toString());
 
