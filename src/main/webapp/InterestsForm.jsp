@@ -15,7 +15,7 @@
             <div class="card blue-grey darken-1">
                 <div class="card-content white-text">
                     <!--TODO JSP NAME-->
-                    <span class="card-title">${customer.name}</span>
+                    <span class="card-title">${name}</span>
                     <p>${location}</p>
                     <p>${initialDate}-${finalDate}</p>
                     <p>${phone}</p>

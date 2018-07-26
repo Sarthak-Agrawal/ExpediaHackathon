@@ -11,9 +11,7 @@ import java.util.List;
 // CRUD refers Create, Read, Update, Delete
 
 
-@Transactional
 public interface TripRepository extends CrudRepository<Trip, Integer> {
-
 
     public List<Trip> findByLocation(String location);
 }

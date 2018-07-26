@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class Customer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer tuid;
