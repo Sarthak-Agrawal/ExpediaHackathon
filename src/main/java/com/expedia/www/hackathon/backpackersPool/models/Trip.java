@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -11,9 +12,13 @@ public class Trip {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer tid;
+    @NotNull
     private Integer tuid;
+    @NotNull
     private String location;
-    private Date date;
+    @NotNull
+    private Date initialDate;
+    private Date finalDate;
     private boolean trekking;
     private boolean religious;
     private boolean localInteraction;
@@ -24,7 +29,10 @@ public class Trip {
     private boolean smoking;
     private Integer age;
 
-    //tid integer PRIMARY KEY , tuid integer , location varchar(100), time timestamp, trekking tinyint(1),religious tinyint(1), localinteraction tinyint(1), sightseeing tinyint(1) , nightlife tinyint(1),language_preffered tinyint(1), smoking_preffered tinyint(1), age_group tinyint(1))
+    //tid integer PRIMARY KEY , tuid integer , location varchar(100), time timestamp, trekking tinyint(1),religious tinyint(1),
+    // localinteraction tinyint(1), sightseeing tinyint(1) , nightlife tinyint(1),language_preffered tinyint(1),
+    // smoking_preffered tinyint(1), age_group tinyint(1))
+
 
     @Override
     public String toString() {
@@ -32,7 +40,8 @@ public class Trip {
                 "tid=" + tid +
                 ", tuid=" + tuid +
                 ", location='" + location + '\'' +
-                ", date=" + date +
+                ", initialDate=" + initialDate +
+                ", finalDate=" + finalDate +
                 ", trekking=" + trekking +
                 ", religious=" + religious +
                 ", localInteraction=" + localInteraction +
@@ -67,14 +76,6 @@ public class Trip {
 
     public void setLocation(String location) {
         this.location = location;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public boolean isTrekking() {
@@ -148,4 +149,21 @@ public class Trip {
     public void setAge(Integer age) {
         this.age = age;
     }
+
+    public Date getInitialDate() {
+        return initialDate;
+    }
+
+    public void setInitialDate(Date initialDate) {
+        this.initialDate = initialDate;
+    }
+
+    public Date getFinalDate() {
+        return finalDate;
+    }
+
+    public void setFinalDate(Date finalDate) {
+        this.finalDate = finalDate;
+    }
+
 }

@@ -21,13 +21,19 @@ import java.util.Date;
         private TripRepository tripRepository;
 
         @GetMapping(path="/add") // Map ONLY GET Requests
-        public @ResponseBody String addNewUser (@RequestParam String tid, @RequestParam String tud, @RequestParam String location, @RequestParam Date date, @RequestParam Boolean trekking, @RequestParam Boolean religious, @RequestParam Boolean localinteraction, @RequestParam Boolean sighseeing, @RequestParam Boolean nightlife, @RequestParam Integer language, @RequestParam Boolean smoking, @RequestParam Boolean sports, @RequestParam Integer age) {
+        public @ResponseBody String addNewUser (@RequestParam String tid, @RequestParam String tuid, @RequestParam String location,
+                                                @RequestParam Date initialDate, @RequestParam Date finalDate, @RequestParam Boolean trekking,
+                                                @RequestParam Boolean religious, @RequestParam Boolean localinteraction, @RequestParam Boolean sighseeing,
+                                                @RequestParam Boolean nightlife, @RequestParam Integer language,
+                                                @RequestParam Boolean smoking, @RequestParam Boolean sports, @RequestParam Integer age) {
             // @ResponseBody means the returned String is the response, not a view name
             // @RequestParam means it is a parameter from the GET or POST request
-          //  tid integer PRIMARY KEY , tuid integer , location varchar(100), time timestamp, trekking tinyint(1),religious tinyint(1), localinteraction tinyint(1), sightseeing tinyint(1) , nightlife tinyint(1),language_preffered tinyint(1), smoking_preffered tinyint(1), age_group tinyint(1))
+            // tid integer PRIMARY KEY , tuid integer , location varchar(100), time timestamp, finalDate
+            // trekking tinyint(1),religious tinyint(1), localinteraction tinyint(1), sightseeing tinyint(1) ,
+            // nightlife tinyint(1),language_preffered tinyint(1), smoking_preffered tinyint(1), age_group tinyint(1))
             Trip trip=new Trip();
             trip.setAge(age);
-            trip.setDate(date);
+            trip.setInitialDate(initialDate);
             trip.setLanguage(language);
             trip.setLocalInteraction(localinteraction);
             trip.setLocation(location);
@@ -38,7 +44,8 @@ import java.util.Date;
             trip.setSports(sports);
             trip.setTid(Integer.parseInt(tid));
             trip.setTrekking(trekking);
-            trip.setTuid(Integer.parseInt(tud));
+            trip.setTuid(Integer.parseInt(tuid));
+            trip.setFinalDate(finalDate);
 
             tripRepository.save(trip);
             return "Saved";

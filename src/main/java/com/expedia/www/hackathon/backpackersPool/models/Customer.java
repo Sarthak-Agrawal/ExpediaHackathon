@@ -4,16 +4,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer tuid;
+    @NotNull
     private String name;
     private char gender;
     private String fbID;
     private String googleID;
+    @NotNull
     private String emailID;
     private String phone;
 
