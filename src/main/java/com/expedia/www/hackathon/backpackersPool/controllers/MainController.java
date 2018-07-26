@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
 
@@ -60,19 +61,43 @@ import java.util.Date;
             return tripRepository.findAll();
         }
 
-        @RequestMapping(method = RequestMethod.GET, value = "/findGroup")
-        public String findGroup(Model model, @RequestParam(value = "tid", required = true ) Integer tid){
-            Trip trip = tripRepository.findById(tid).get();
-            Customer customer = customerRepository.findById(trip.getTuid()).get();
-            model.addAttribute("name", customer.getName());
-            model.addAttribute("location",trip.getLocation());
-            model.addAttribute("initialDate", trip.getInitialDate());
-            model.addAttribute("finalDate",trip.getFinalDate());
-            model.addAttribute("phone",customer.getPhone());
-            model.addAttribute("email",customer.getEmailID());
-            return "/src/main/resources/static/InterestForm.jsp";
-        }
+//    @GetMapping(path="/findGroup")
+//        public @ResponseBody String findGroup(Model model, @RequestParam Integer tid){
+//          return "/src/main/resources/static/InterestForm.jsp";
+//        }
 
+        
+//    public String findGroup(Model model, @RequestParam Integer tid) {
+//        System.out.print(tid + "*********\n\n\n\n\n\n\n\n\n");
+//        Trip trip = tripRepository.findById(tid).get();
+//        Customer customer = customerRepository.findById(trip.getTuid()).get();
+////            Model
+//        model.addAttribute("name", customer.getName());
+//        model.addAttribute("location",trip.getLocation());
+//        model.addAttribute("initialDate", trip.getInitialDate());
+//        model.addAttribute("finalDate",trip.getFinalDate());
+//        model.addAttribute("phone",customer.getPhone());
+//        model.addAttribute("email",customer.getEmailID());
+//        return "InterestsForm.jsp";
+//    }
+@RequestMapping(value = "/findGroup", method = RequestMethod.GET)
+    public ModelAndView findGroup(@RequestParam(value = "tid", required = true ) Integer tid){
+        ModelAndView mv = new ModelAndView("InterestsForm.jsp");
 
+        System.out.println("**********\n\n\n\n\n");
+        Trip trip = tripRepository.findById(tid).get();
+        Customer customer = customerRepository.findById(trip.getTuid()).get();
+        mv.addObject(customer);
+    System.out.println(mv.getViewName());
+    System.out.println(mv);
+//        mv.addObject("name", customer.getName());
+//        mv.addObject("location",trip.getLocation());
+//        mv.addObject("initialDate", trip.getInitialDate());
+//        mv.addObject("finalDate",trip.getFinalDate());
+//        mv.addObject("phone",customer.getPhone());
+//        mv.addObject("email",customer.getEmailID());
+        return mv;
     }
+
+}
 

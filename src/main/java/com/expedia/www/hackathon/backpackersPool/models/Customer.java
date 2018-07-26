@@ -11,12 +11,10 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer tuid;
-    @NotNull
     private String name;
-    private char gender;
+    private String gender;
     private String fbID;
     private String googleID;
-    @NotNull
     private String emailID;
     private String phone;
 
@@ -36,11 +34,11 @@ public class Customer {
         this.name = name;
     }
 
-    public char getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(char gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
