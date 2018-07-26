@@ -12,11 +12,8 @@ public class Trip {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer tid;
-    @NotNull
     private Integer tuid;
-    @NotNull
     private String location;
-    @NotNull
     private Date initialDate;
     private Date finalDate;
     private boolean trekking;

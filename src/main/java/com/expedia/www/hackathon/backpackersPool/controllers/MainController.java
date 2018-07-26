@@ -31,6 +31,7 @@ import java.util.Date;
             // tid integer PRIMARY KEY , tuid integer , location varchar(100), time timestamp, finalDate
             // trekking tinyint(1),religious tinyint(1), localinteraction tinyint(1), sightseeing tinyint(1) ,
             // nightlife tinyint(1),language_preffered tinyint(1), smoking_preffered tinyint(1), age_group tinyint(1))
+            //http://localhost:8080/demo/add?tid=1&tuid=1&location=Paris&initialdate=13/04/2019&finalDate=15/04/2019&trekking=1&religious=1&localinteraction=1&sighseeing=0&nightlife=1&language=2&smoking=0&sports=1&age=3
             Trip trip=new Trip();
             trip.setAge(age);
             trip.setInitialDate(initialDate);
