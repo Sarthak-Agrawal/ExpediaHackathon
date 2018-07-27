@@ -41,15 +41,20 @@
     </nav>
 </div>
 <div class="card-panel"  background-color: rgba(128, 0, 0, 0.4);>
-    <form class="col s6">
+    <form class="col s6" action="/add" >
         <div class="row">
             <div class="col s12">
                 <div class="card blue-grey darken-1">
                     <div class="card-content white-text">
                         <!--TODO JSP NAME-->
-                        <span class="card-title" style="text-transform: capitalize">>${name}</span>
-                        <p style="text-transform: capitalize">${location}</p>
+                        <span class="card-title" style="text-transform: capitalize">${name}</span>
+                        <input name="tid" value="${tid}" hidden/>
+                        <input name="tuid" value="${tuid}" hidden/>
+
+                        <p style="text-transform: capitalize"><input name="location" value="${location}" hidden/>${location}</p>
                         <p>${initialDate}-${finalDate}</p>
+                        <input name="initialDate" value="${initialDate}" hidden/>
+                        <input name="finalDate" value="${finalDate}" hidden/>
                         <p>${phone}</p>
                         <p>${email}</p>
                     </div>
@@ -60,50 +65,52 @@
         <h5>Interested in:</h5>
         <p>
             <label>
-                <input type="checkbox" class="filled-in" />
+                <input type="checkbox" class="filled-in" name="trekking" value=true />
                 <span>Trekking</span>
             </label>
         </p>
         <p>
             <label>
-                <input type="checkbox" class="filled-in" />
+                <input type="checkbox" class="filled-in" name="religious" value=1 />
+
                 <span>Religious</span>
             </label>
         </p>
         <p>
             <label>
-                <input type="checkbox" class="filled-in" />
+
+                <input type="checkbox" class="filled-in" name="localinteraction" value=1 />
                 <span>Local Interaction</span>
             </label>
         </p>
         <p>
             <label>
-                <input type="checkbox" class="filled-in" />
+                <input type="checkbox" class="filled-in" name="sports" value=1 />
                 <span>Sports</span>
             </label>
         </p>
         <p>
             <label>
-                <input type="checkbox" class="filled-in" />
+                <input type="checkbox" class="filled-in" name="sightseeing" value=1 />
                 <span>Sightseeing</span>
             </label>
         </p>
         <p>
             <label>
-                <input type="checkbox" class="filled-in" />
+                <input type="checkbox" class="filled-in" name="nightlife" value=1 />
                 <span>Night Life</span>
             </label>
         </p>
         <h5>You are comfortable with:</h5>
         <p>
             <label>
-                <input type="checkbox" class="filled-in" />
+                <input type="checkbox" class="filled-in" name="smoking" value=1 />
                 <span>Smoking</span>
             </label>
         </p>
         <p>
             <label>
-                <input type="checkbox" class="filled-in" />
+                <input type="checkbox" class="filled-in" name="drinking" value=1 />
                 <span>Drinking</span>
             </label>
         </p>
@@ -113,7 +120,7 @@
         <!--</div>-->
         <div>
             <label>Preferred Language</label>
-            <select class="browser-default" name="lang" data-placeholder="Choose a Language...">
+            <select class="browser-default" name="language" data-placeholder="Choose a Language...">
                 <option value="1">English</option>
                 <option value="2">French</option>
                 <option value="3">German</option>

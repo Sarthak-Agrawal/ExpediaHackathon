@@ -50,7 +50,7 @@
     <c:choose>
         <c:when test="${isEmpty}">
             <div class="collection">
-                <span class="collection-item">Sorry, We didn't find a match for you. We will notify you once we get it.</span>
+                <span class="collection-item blue-text text-darken-2">Sorry, We didn't find a match for you. We will notify you once we get it.</span>
             </div>
         </c:when>
         <c:when test="${!isEmpty}">

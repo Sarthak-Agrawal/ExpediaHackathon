@@ -25,60 +25,150 @@ public class MainController {
     @Autowired
     private CustomerRepository customerRepository;
 
-    @GetMapping(path="/add") // Map ONLY GET Requests
-    public ModelAndView addNewUser (@RequestParam String tid, @RequestParam String tuid, @RequestParam String location,
-                                            @RequestParam Date initialDate, @RequestParam Date finalDate, @RequestParam Boolean trekking,
-                                            @RequestParam Boolean religious, @RequestParam Boolean localinteraction, @RequestParam Boolean sighseeing,
-                                            @RequestParam Boolean nightlife, @RequestParam Integer language,
-                                            @RequestParam Boolean smoking, @RequestParam Boolean sports, @RequestParam Integer age) {
-        // @ResponseBody means the returned String is the response, not a view name
-        // @RequestParam means it is a parameter from the GET or POST request
-        // tid integer PRIMARY KEY , tuid integer , location varchar(100), time timestamp, finalDate
-        // trekking tinyint(1),religious tinyint(1), localinteraction tinyint(1), sightseeing tinyint(1) ,
-        // nightlife tinyint(1),language_preffered tinyint(1), smoking_preffered tinyint(1), age_group tinyint(1))
-        //http://localhost:8080/demo/add?tid=1&tuid=1&location=Paris&initialdate=13/04/2019&finalDate=15/04/2019&trekking=1&religious=1&localinteraction=1&sighseeing=0&nightlife=1&language=2&smoking=0&sports=1&age=3
-        Trip trip=new Trip();
-        trip.setAge(age);
-        trip.setInitialDate(initialDate);
-        trip.setLanguage(language);
-        trip.setLocalInteraction(localinteraction);
-        trip.setLocation(location);
-        trip.setNightlife(nightlife);
-        trip.setReligious(religious);
-        trip.setSightseeing(sighseeing);
-        trip.setSmoking(smoking);
-        trip.setSports(sports);
-        trip.setTid(Integer.parseInt(tid));
-        trip.setTrekking(trekking);
-        trip.setTuid(Integer.parseInt(tuid));
-        trip.setFinalDate(finalDate);
-
-        tripRepository.save(trip);
-        Utils util=new Utils();
-        List<String> list1 = new ArrayList<>();
-        List<String> list2 = new ArrayList<>();
-        List<String> list3 = new ArrayList<>();
-        list1 = util.groupTrip(trip.getTid(),tripRepository,customerRepository);
-
-        for(String link:list1){
-            list2.add(link.split(":")[1]);
-            list3.add(link.split(":")[0]);
-
-        }
-
-        ModelAndView mv = new ModelAndView();
-
-        mv.setViewName("groupData.jsp");
-        boolean isEmpty = false;
-        if(list2.isEmpty()){
-            isEmpty = true;
-        }
-        mv.addObject("isEmpty",isEmpty);
-        mv.addObject("cotravellersModeOfContact", list3);
-        mv.addObject("cotravellersLinks", list2);
-
-        return mv;
+//    @GetMapping(path="/add") // Map ONLY GET Requests
+//    public ModelAndView addNewUser (@RequestParam String tid, @RequestParam String tuid, @RequestParam String location,
+//                                            @RequestParam Date initialDate, @RequestParam Date finalDate, @RequestParam Boolean trekking,
+//                                            @RequestParam Boolean religious, @RequestParam Boolean localinteraction, @RequestParam Boolean sighseeing,
+//                                            @RequestParam Boolean nightlife, @RequestParam Integer language,
+//                                            @RequestParam Boolean smoking, @RequestParam Boolean sports, @RequestParam Integer age) {
+//        // @ResponseBody means the returned String is the response, not a view name
+//        // @RequestParam means it is a parameter from the GET or POST request
+//        // tid integer PRIMARY KEY , tuid integer , location varchar(100), time timestamp, finalDate
+//        // trekking tinyint(1),religious tinyint(1), localinteraction tinyint(1), sightseeing tinyint(1) ,
+//        // nightlife tinyint(1),language_preffered tinyint(1), smoking_preffered tinyint(1), age_group tinyint(1))
+//        //http://localhost:8080/demo/add?tid=1&tuid=1&location=Paris&initialdate=13/04/2019&finalDate=15/04/2019&trekking=1&religious=1&localinteraction=1&sighseeing=0&nightlife=1&language=2&smoking=0&sports=1&age=3
+//        Trip trip=new Trip();
+//        trip.setAge(age);
+//        trip.setInitialDate(initialDate);
+//        trip.setLanguage(language);
+//        trip.setLocalInteraction(localinteraction);
+//        trip.setLocation(location);
+//        trip.setNightlife(nightlife);
+//        trip.setReligious(religious);
+//        trip.setSightseeing(sighseeing);
+//        trip.setSmoking(smoking);
+//        trip.setSports(sports);
+//        trip.setTid(Integer.parseInt(tid));
+//        trip.setTrekking(trekking);
+//        trip.setTuid(Integer.parseInt(tuid));
+//        trip.setFinalDate(finalDate);
+//
+//        tripRepository.save(trip);
+//        Utils util=new Utils();
+//        List<String> list1 = new ArrayList<>();
+//        List<String> list2 = new ArrayList<>();
+//        List<String> list3 = new ArrayList<>();
+//        list1 = util.groupTrip(trip.getTid(),tripRepository,customerRepository);
+//
+//        for(String link:list1){
+//            list2.add(link.split(":")[1]);
+//            list3.add(link.split(":")[0]);
+//
+//        }
+//
+//        ModelAndView mv = new ModelAndView();
+//
+//        mv.setViewName("groupData.jsp");
+//        boolean isEmpty = false;
+//        if(list2.isEmpty()){
+//            isEmpty = true;
+//        }
+//        mv.addObject("isEmpty",isEmpty);
+//        mv.addObject("cotravellersModeOfContact", list3);
+//        mv.addObject("cotravellersLinks", list2);
+//
+//        return mv;
+//    }
+@GetMapping(path="/add") // Map ONLY GET Requests
+public ModelAndView addNewUser (@RequestParam String tid, @RequestParam String tuid, @RequestParam String location,
+                                @RequestParam Date initialDate, @RequestParam Date finalDate, @RequestParam(required = false) Boolean trekking,
+                                @RequestParam(required = false) Boolean religious, @RequestParam(required = false) Boolean localinteraction,
+                                @RequestParam(required = false) Boolean sighseeing,
+                                @RequestParam(required = false) Boolean nightlife, @RequestParam Integer language,
+                                @RequestParam(required = false) Boolean smoking, @RequestParam(required = false) Boolean sports, @RequestParam Integer age) {
+    // @ResponseBody means the returned String is the response, not a view name
+    // @RequestParam means it is a parameter from the GET or POST request
+    // tid integer PRIMARY KEY , tuid integer , location varchar(100), time timestamp, finalDate
+    // trekking tinyint(1),religious tinyint(1), localinteraction tinyint(1), sightseeing tinyint(1) ,
+    // nightlife tinyint(1),language_preffered tinyint(1), smoking_preffered tinyint(1), age_group tinyint(1))
+    //http://localhost:8080/demo/add?tid=1&tuid=1&location=Paris&initialdate=13/04/2019&finalDate=15/04/2019&trekking=1&religious=1&localinteraction=1&sighseeing=0&nightlife=1&language=2&smoking=0&sports=1&age=3
+    Trip trip=new Trip();
+    trip.setAge(age);
+    trip.setInitialDate(initialDate);
+    trip.setLanguage(language);
+    if(localinteraction==null){
+        localinteraction=false;
+    }else{
+        localinteraction = true;
     }
+    trip.setLocalInteraction(localinteraction);
+    trip.setLocation(location);
+    if(nightlife == null){
+        nightlife = false;
+    }else{
+        nightlife = true;
+    }
+    trip.setNightlife(nightlife);
+    if(religious==null){
+        religious = false;
+    }else{
+        religious = true;
+    }
+    trip.setReligious(religious);
+    if(sighseeing==null){
+        sighseeing = false;
+    }else{
+        sighseeing = true;
+    }
+    trip.setSightseeing(sighseeing);
+    if(smoking==null){
+        smoking = false;
+    }else{
+        smoking = true;
+    }
+    trip.setSmoking(smoking);
+    if(sports==null){
+        sports = false;
+    }else{
+        sports = true;
+    }
+    trip.setSports(sports);
+    trip.setTid(Integer.parseInt(tid));
+    if(trekking==null){
+        trekking = false;
+    }else {
+        trekking = true;
+    }
+    trip.setTrekking(trekking);
+    trip.setTuid(Integer.parseInt(tuid));
+    trip.setFinalDate(finalDate);
+
+    tripRepository.save(trip);
+    Utils util=new Utils();
+    List<String> list1 = new ArrayList<>();
+    List<String> list2 = new ArrayList<>();
+    List<String> list3 = new ArrayList<>();
+    list1 = util.groupTrip(trip.getTid(),tripRepository,customerRepository);
+
+    for(String link:list1){
+        list2.add(link.split(":")[1]);
+        list3.add(link.split(":")[0]);
+
+    }
+
+    ModelAndView mv = new ModelAndView();
+
+    mv.setViewName("groupData.jsp");
+    boolean isEmpty = false;
+    if(list2.isEmpty()){
+        isEmpty = true;
+    }
+    mv.addObject("isEmpty",isEmpty);
+    mv.addObject("cotravellersModeOfContact", list3);
+    mv.addObject("cotravellersLinks", list2);
+
+    return mv;
+}
 
     @GetMapping(path="/all")
     public @ResponseBody Iterable<Trip> getAllUsers() {
@@ -120,10 +210,14 @@ public class MainController {
 
         mv.addObject("email",customer.getEmailID());
         mv.addObject("location",trip.getLocation());
-        mv.addObject("initialDate",trip.getInitialDate());
-        mv.addObject("finalDate",trip.getFinalDate());
+        String[] initialDate = trip.getInitialDate().toString().split(" ")[0].split("-");
+        mv.addObject("initialDate",initialDate[1] + "/" + initialDate[2] + "/" + initialDate[0]);
+        String[] finalDate = trip.getFinalDate().toString().split(" ")[0].split("-");
+        mv.addObject("finalDate",finalDate[1] + "/" + finalDate[2] + "/" + finalDate[0]);
         mv.addObject("phone",customer.getPhone());
         mv.addObject("name",customer.getName());
+        mv.addObject("tid",trip.getTid());
+        mv.addObject("tuid", trip.getTuid());
 
         return mv;
     }
