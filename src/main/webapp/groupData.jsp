@@ -8,6 +8,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <style>
+        .card-panel {margin-top: 25px;
+            margin-right: 500px;
+            margin-left: 500px;
+        }
+        .header{
+            background-color: #fec700;
+            height: 150px;
+        }
+    </style>
 </head>
 
 <body background="bckg.jpg">
@@ -36,6 +46,7 @@
 </div>
 
 <div class="card-panel" >
+    <%--<c:out value="${isEmpty}"/>--%>
     <c:choose>
         <c:when test="${isEmpty}">
             <div class="collection">
@@ -43,10 +54,12 @@
             </div>
         </c:when>
         <c:when test="${!isEmpty}">
-            <c:forEach var="list2data" items="${list2}" >
-                <li><c:out value="${list2data}"/></li>
+            <ol>
+            <c:forEach var="list2data" items="${cotravellersLinks}" >
+                <li class="blue-text text-darken-2"><c:out value="${list2data}"/></li>
 
             </c:forEach>
+            </ol>
         </c:when>
     </c:choose>
 

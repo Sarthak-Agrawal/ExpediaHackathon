@@ -15,6 +15,7 @@ public class Utils {
 
         List<Trip> finalGroup = finalGroups(tid, tripRepository);
 //        List<Customer> cotravellers = new ArrayList<>();
+        finalGroup.remove(tripRepository.findById(tid).get());
         List<String> pointOfContacts = new ArrayList<>();
         for (Trip temp : finalGroup) {
             Integer tuid = temp.getTuid();
@@ -96,7 +97,7 @@ public class Utils {
                     count_match++;
                 if (Boolean.parseBoolean(user_dict.get("sightseeing").toString()) == inst.isSightseeing())
                     count_match++;
-                if (count_match == no_of_ones - 2) {
+                if (count_match >= no_of_ones - 2) {
                     group_interest.put(inst, String.valueOf(count_match));
                 }
 
@@ -107,35 +108,35 @@ public class Utils {
         int cnt=0;
         List<Trip> flist=new ArrayList<>();
         for(Map.Entry m:group_interest.entrySet()){
-            if(m.getValue()=="5")
+            if(m.getValue().equals("5"))
             {
                 flist.add((Trip)m.getKey());
                 cnt++;
                 if(cnt>9)
                     break;
             }
-            if(m.getValue()=="4")
+            if(m.getValue().equals("4"))
             {
                 flist.add((Trip)m.getKey());
                 cnt++;
                 if(cnt>9)
                     break;
             }
-            if(m.getValue()=="3")
+            if(m.getValue().equals("3"))
             {
                 flist.add((Trip)m.getKey());
                 cnt++;
                 if(cnt>9)
                     break;
             }
-            if(m.getValue()=="2")
+            if(m.getValue().equals("2"))
             {
                 flist.add((Trip)m.getKey());
                 cnt++;
                 if(cnt>9)
                     break;
             }
-            if(m.getValue()=="1")
+            if(m.getValue().equals("1"))
             {
                 flist.add((Trip)m.getKey());
                 cnt++;

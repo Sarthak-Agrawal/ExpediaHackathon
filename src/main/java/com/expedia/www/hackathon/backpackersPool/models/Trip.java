@@ -10,7 +10,7 @@ import java.util.Date;
 @Entity
 public class Trip {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer tid;
     private Integer tuid;
     private String location;
