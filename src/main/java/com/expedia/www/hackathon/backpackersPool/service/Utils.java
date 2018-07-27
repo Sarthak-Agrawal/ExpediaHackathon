@@ -75,10 +75,10 @@ public class Utils {
 
 
         int no_of_ones=0;
-        for(int i=0;i<user_dict.size();i++)
-        {
-            if(user_dict.get(i).toString()=="1")
+        for(String key:((Hashtable<String, Boolean>) user_dict).keySet()){
+            if(user_dict.get(key)){
                 no_of_ones++;
+            }
         }
 
         HashMap<Trip, String> group_interest = new HashMap<Trip, String>();

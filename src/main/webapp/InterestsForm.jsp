@@ -40,16 +40,15 @@
         </div>
     </nav>
 </div>
-<div class="card-panel"  background-color: rgba(128, 0, 0, 0.4);
->
+<div class="card-panel"  background-color: rgba(128, 0, 0, 0.4);>
     <form class="col s6">
         <div class="row">
-            <div class="col s12 m6">
+            <div class="col s12">
                 <div class="card blue-grey darken-1">
                     <div class="card-content white-text">
                         <!--TODO JSP NAME-->
-                        <span class="card-title">${name}</span>
-                        <p>${location}</p>
+                        <span class="card-title" style="text-transform: capitalize">>${name}</span>
+                        <p style="text-transform: capitalize">${location}</p>
                         <p>${initialDate}-${finalDate}</p>
                         <p>${phone}</p>
                         <p>${email}</p>

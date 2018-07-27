@@ -26,7 +26,7 @@ public class MainController {
     private CustomerRepository customerRepository;
 
     @GetMapping(path="/add") // Map ONLY GET Requests
-    public @ResponseBody String addNewUser (@RequestParam String tid, @RequestParam String tuid, @RequestParam String location,
+    public ModelAndView addNewUser (@RequestParam String tid, @RequestParam String tuid, @RequestParam String location,
                                             @RequestParam Date initialDate, @RequestParam Date finalDate, @RequestParam Boolean trekking,
                                             @RequestParam Boolean religious, @RequestParam Boolean localinteraction, @RequestParam Boolean sighseeing,
                                             @RequestParam Boolean nightlife, @RequestParam Integer language,
@@ -55,9 +55,29 @@ public class MainController {
 
         tripRepository.save(trip);
         Utils util=new Utils();
-          List<String> list= new ArrayList<>();
-          util.groupTrip(trip.getTid(),tripRepository,customerRepository);
-        return "Saved";
+        List<String> list1 = new ArrayList<>();
+        List<String> list2 = new ArrayList<>();
+        List<String> list3 = new ArrayList<>();
+        list1 = util.groupTrip(trip.getTid(),tripRepository,customerRepository);
+
+        for(String link:list1){
+            list2.add(link.split(":")[1]);
+            list3.add(link.split(":")[0]);
+
+        }
+
+        ModelAndView mv = new ModelAndView();
+
+        mv.setViewName("groupData.jsp");
+        boolean isEmpty = false;
+        if(list2.isEmpty()){
+            isEmpty = true;
+        }
+        mv.addObject("isEmpty",isEmpty);
+        mv.addObject("cotravellersModeOfContact", list3);
+        mv.addObject("cotravellersLinks", list2);
+
+        return mv;
     }
 
     @GetMapping(path="/all")
